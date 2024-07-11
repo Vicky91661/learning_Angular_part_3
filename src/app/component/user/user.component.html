@@ -1,0 +1,38 @@
+<p>Hello from the user componet</p>
+
+<h1 appMyHighlight>My name is {{name}} with status {{status}} having salary {{salary}}</h1>
+<button [disabled]="isBtnDisable" (click)="MouseClick()">Click me</button>
+<input type="text" (input)="formChangeHandler($event)">
+
+
+<!-- Using the Control flow methods -->
+<div>
+    @for (item of users; track $index) {
+        @if (item.salary>40000) {
+            <h4>My name is {{item.name}} with status {{item.status}} having salary {{item.salary}}</h4>
+        }@else {
+            <h4>My name is {{item.name}} with status {{item.status}} having very less salary </h4>
+        }
+    }
+</div>
+<hr>
+<!-- Using the directives  -->
+
+<div *ngFor="let item of users">
+    <h4 *ngIf="item.salary>40000; else elseBlock">My name is {{item.name}} with status {{item.status}} having salary 
+        {{item.salary}}</h4>
+    
+    <ng-template #elseBlock>
+        <h4>My name is {{item.name}} with status {{item.status}} having no salary </h4>
+    </ng-template>
+    
+
+</div>
+
+
+<div>
+    <h4 *ngIf="isOwner; else OwnerelseBlock "  style="background-color: cadetblue;">{{OwnerName}} email is :{{email}} </h4>
+    <ng-template #OwnerelseBlock  >
+        <h4 style="background-color:rgb(123, 184, 57);"> {{OwnerName}} email is :{{email}} </h4>
+    </ng-template>
+</div> 
